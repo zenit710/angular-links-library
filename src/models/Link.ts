@@ -1,17 +1,14 @@
 import * as mongoose from "mongoose";
 
-export enum LinkStatus
-{
-    "TO_READ",
-    "READ"
-}
+export const STATUS_TO_READ: string = "TO_READ";
+export const STATUS_READ: string = "READ";
 
 export type LinkModel = mongoose.Document & {
     name: string,
     url: string,
     description: string,
-    status?: LinkStatus,
-    favourite?: boolean
+    status: string,
+    favourite: boolean
     // + deklaracje funkcji dodawanych później w schema
 };
 
@@ -28,10 +25,13 @@ const linkSchema: mongoose.Schema = new mongoose.Schema({
     },
     description: String,
     status: {
-        type: LinkStatus,
-        default: LinkStatus.TO_READ
+        type: String,
+        default: STATUS_TO_READ
     },
-    favourite: Boolean
+    favourite: {
+        type: Boolean,
+        default: false
+    }
 }, { timestamps: true });
 
 //linkSchema.pre("save", function save(next) {} - co zrobić przed zapisem

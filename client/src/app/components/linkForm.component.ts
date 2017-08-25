@@ -22,7 +22,8 @@ export class LinkComponent {
     let link: Link = {
       name: this.link.name,
       url: this.link.url,
-      description: this.link.description
+      description: this.link.description,
+      favourite: this.link.favourite
     };
 
     this.linkService.addLink(link)

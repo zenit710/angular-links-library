@@ -1,6 +1,6 @@
 export interface ApiResponseInterface
 {
-    statusCode: number,
-    errors?: any,
-    result?: any
+    statusCode: number;
+    errors?: any;
+    result?: any;
 }

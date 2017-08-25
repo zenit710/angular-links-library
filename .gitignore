@@ -1,6 +1,7 @@
 .idea/
 build/
 node_modules/
+npm-debug.log
 client/dist
 client/tmp
 client/out-tsc

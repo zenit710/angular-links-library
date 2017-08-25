@@ -8,8 +8,8 @@ import errorHandler = require("errorhandler");
 import methodOverride = require("method-override");
 
 // routes
-import * as IndexRouter from "./routes/index";
-import * as ApiRouter from "./routes/api";
+import * as IndexRouter from "./routes/IndexRoutes";
+import * as ApiRouter from "./routes/ApiRoutes";
 
 /**
  * @class Server
@@ -38,7 +38,7 @@ export class Server {
         global.Promise = require("q").Promise;
         mongoose.Promise = global.Promise;
 
-        const DB = "mongodb://localhost/angularLibrary";
+        const DB: string = "mongodb://localhost/angularLibrary";
         mongoose.connect(DB, {useMongoClient: true}, (err: any) => {
             if (err) {
                 return err;

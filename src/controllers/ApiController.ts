@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { default as Link, LinkModel } from "../models/link";
+import { default as Link, LinkModel, STATUS_TO_READ } from "../models/Link";
 import { ApiResponse } from "../models/ApiResponse";
 
 export class ApiController
@@ -14,7 +14,10 @@ export class ApiController
 
     public addLink(req: Request, res: Response): void
     {
-        new Link(req.body).save((err: any, result: LinkModel) => {
+        let link: LinkModel = req.body;
+        link.status = STATUS_TO_READ;
+
+        new Link(link).save((err: any, result: LinkModel) => {
             res.json(new ApiResponse(err, result).getResponse());
         });
     }
