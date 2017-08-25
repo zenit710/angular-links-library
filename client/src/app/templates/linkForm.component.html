@@ -1,0 +1,8 @@
+<div class="container linkForm">
+  <h3>Dodaj nowy link:</h3>
+  <input name="name" title="name" placeholder="Nazwa" [(ngModel)]="link.name" />
+  <input name="url" title="url" placeholder="Adres www" [(ngModel)]="link.url" />
+  <input name="description" title="description" placeholder="Opis" [(ngModel)]="link.description" />
+  Ulubiony: <input type="checkbox" name="favourite" title="description" [(ngModel)]="link.favourite" />
+  <button class="btn btn-success" (click)="addLink()">Dodaj link</button>
+</div>

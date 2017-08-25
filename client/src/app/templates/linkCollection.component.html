@@ -1,0 +1,28 @@
+<link-form (onAdded)="onAddLink($event)"></link-form>
+
+<div class="linkCollection">
+  <table class="table text-left">
+    <thead>
+      <tr>
+        <th>Link</th>
+        <th>Opis</th>
+        <th>Status</th>
+        <th>Ulubiony</th>
+        <th>Data utworzenia</th>
+        <th>Akcje</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let link of links">
+        <td><a href="{{ link.url }}" title="{{ link.name }}">{{ link.name }}</a></td>
+        <td>{{ link.description }}</td>
+        <td>{{ link.status || "TO_READ"}}</td>
+        <td>{{ link.favourite ? "TAK" : "" }}</td>
+        <td>{{ link.createdAt | date:'yyyy-MM-dd HH:mm:ss' || "" }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="removeLink(link._id)">Usuń</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
