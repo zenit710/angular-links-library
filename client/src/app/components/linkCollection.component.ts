@@ -35,6 +35,30 @@ export class LinkCollectionComponent {
       });
   }
 
+  public switchFavourite(link: Link)
+  {
+    link.favourite = !link.favourite;
+
+    this.linkService.updateLink(link)
+      .subscribe((response: ApiResponse) => {
+        if (response.statusCode === API_STATUS_CODE.ERROR) {
+          console.error(response.errors)
+        }
+      });
+  }
+
+  public switchStatus(link: Link)
+  {
+    link.status = (link.status + 1) % 2;
+
+    this.linkService.updateLink(link)
+      .subscribe((response: ApiResponse) => {
+        if (response.statusCode === API_STATUS_CODE.ERROR) {
+          console.error(response.errors)
+        }
+      });
+  }
+
   private removeFromArray(id: string)
   {
     for (let i: number = 0; i < this.links.length; i++) {

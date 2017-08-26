@@ -21,8 +21,8 @@
         <td>{{ link.createdAt | date:'yyyy-MM-dd HH:mm:ss' || "" }}</td>
         <td>
           <button class="btn btn-danger glyphicon glyphicon-remove" (click)="removeLink(link._id)"></button>
-          <button class="btn btn-info glyphicon glyphicon-star{{ link.favourite ? '-empty' : ''}}" (click)="switchFavourite(link._id)"></button>
-          <button class="btn btn-warning glyphicon glyphicon-{{ link.status === 'TO_READ' ? 'ok' : 'dashboard' }}" (click)="switchFavourite(link._id)"></button>
+          <button class="btn btn-info glyphicon glyphicon-star{{ link.favourite ? '-empty' : ''}}" (click)="switchFavourite(link)"></button>
+          <button class="btn btn-warning glyphicon glyphicon-{{ link.status === 'TO_READ' ? 'ok' : 'dashboard' }}" (click)="switchStatus(link)"></button>
         </td>
       </tr>
     </tbody>

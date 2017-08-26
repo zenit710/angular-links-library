@@ -1,13 +1,15 @@
 import * as mongoose from "mongoose";
 
-export const STATUS_TO_READ: string = "TO_READ";
-export const STATUS_READ: string = "READ";
+export enum LINK_STATUS {
+    TO_READ = 0,
+    READ = 1
+};
 
 export type LinkModel = mongoose.Document & {
     name: string,
     url: string,
     description: string,
-    status: string,
+    status: number,
     favourite: boolean
     // + deklaracje funkcji dodawanych później w schema
 };
@@ -25,8 +27,8 @@ const linkSchema: mongoose.Schema = new mongoose.Schema({
     },
     description: String,
     status: {
-        type: String,
-        default: STATUS_TO_READ
+        type: Number,
+        default: LINK_STATUS.TO_READ
     },
     favourite: {
         type: Boolean,

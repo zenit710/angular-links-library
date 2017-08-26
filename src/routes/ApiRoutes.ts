@@ -16,4 +16,8 @@ router.delete("/link/:id", (req: Request, res: Response) => {
     apiController.removeLink(req, res);
 });
 
+router.post("/link/update", (req: Request, res: Response) => {
+    apiController.updateLink(req, res);
+});
+
 export = router;

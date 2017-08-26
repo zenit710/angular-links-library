@@ -1,16 +1,10 @@
-export enum LinkStatus
-{
-  "TO_READ",
-  "READ"
-}
-
 export interface Link
 {
   _id?: string;
   name: string;
   url: string;
   description: string;
-  status?: LinkStatus;
+  status?: number;
   favourite?: boolean;
   createdAt?: Date;
 }
