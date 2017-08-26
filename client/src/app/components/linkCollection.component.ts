@@ -13,6 +13,7 @@ export class LinkCollectionComponent {
   links: Array<Link>;
 
   constructor(private linkService: LinkService) {
+    this.links = [];
     this.getLinks();
   }
 

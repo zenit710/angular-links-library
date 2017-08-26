@@ -1,4 +1,20 @@
 .linkForm {
   margin: 20px 0;
+}
 
+.errors {
+  position: relative;
+}
+
+.errors span {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
+.ng-invalid {
+  border-width: 1px;
+  border-color: rgba(255,80,80,.8);
+  box-shadow: 0 0 8px rgba(255,80,80,.6);
 }

@@ -13,9 +13,11 @@ export class LinkComponent {
   @Output() onAdded: EventEmitter<Link> = new EventEmitter<Link>();
 
   link: Link;
+  errors: Array<any>;
 
   constructor(private linkService: LinkService) {
     this.initLinkModel();
+    this.errors = [];
   }
 
   public addLink() {
@@ -30,12 +32,12 @@ export class LinkComponent {
       .subscribe((response: ApiResponse) => {
         if (response.statusCode === API_STATUS_CODE.OK) {
           this.onAdded.emit(response.result);
+          this.initLinkModel();
         } else {
-          console.error(response.errors);
+          let obj: Object = response.errors.errors;
+          this.errors = Object.keys(obj).map(key => obj[key]);
         }
       });
-
-    this.initLinkModel();
   }
 
   private initLinkModel()
@@ -46,5 +48,10 @@ export class LinkComponent {
       description: "",
       favourite: false
     };
+  }
+
+  public clearErrors()
+  {
+    this.errors = [];
   }
 }

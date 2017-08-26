@@ -1,8 +1,36 @@
+<div *ngIf="errors.length" class="alert alert-danger errors">
+  <span class="glyphicon glyphicon-remove" (click)="clearErrors()"></span>
+  <p *ngFor="let err of errors">{{ err.message }}</p>
+</div>
 <div class="container linkForm">
   <h3>Dodaj nowy link:</h3>
-  <input name="name" title="name" placeholder="Nazwa" [(ngModel)]="link.name" />
-  <input name="url" title="url" placeholder="Adres www" [(ngModel)]="link.url" />
-  <input name="description" title="description" placeholder="Opis" [(ngModel)]="link.description" />
-  Ulubiony: <input type="checkbox" name="favourite" title="description" [(ngModel)]="link.favourite" />
+  <input
+    name="name"
+    title="Nazwa linku. Minimum 3 znaki. Wymagany."
+    placeholder="Nazwa"
+    [(ngModel)]="link.name"
+    minlength="3"
+    required
+  />
+  <input
+    name="url"
+    title="Adres www. Wymagany."
+    placeholder="Adres www"
+    [(ngModel)]="link.url"
+    required
+  />
+  <input
+    name="description"
+    title="Opis linku."
+    placeholder="Opis"
+    [(ngModel)]="link.description"
+  />
+  Ulubiony:
+  <input
+    type="checkbox"
+    name="Dodaj do ulubionych."
+    title="description"
+    [(ngModel)]="link.favourite"
+  />
   <button class="btn btn-success" (click)="addLink()">Dodaj link</button>
 </div>
