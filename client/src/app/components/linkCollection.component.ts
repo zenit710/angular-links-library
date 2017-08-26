@@ -13,6 +13,11 @@ export class LinkCollectionComponent {
   links: Array<Link>;
 
   constructor(private linkService: LinkService) {
+    this.getLinks();
+  }
+
+  private getLinks()
+  {
     this.linkService.getLinks()
       .subscribe((response: ApiResponse) => {
         if (response.statusCode === API_STATUS_CODE.OK) {
@@ -28,7 +33,7 @@ export class LinkCollectionComponent {
     this.linkService.removeLink(id)
       .subscribe((response: ApiResponse) => {
         if (response.statusCode === API_STATUS_CODE.OK) {
-          this.removeFromArray(id);
+          this.getLinks();
         } else {
           console.error(response.errors)
         }
@@ -59,19 +64,36 @@ export class LinkCollectionComponent {
       });
   }
 
-  private removeFromArray(id: string)
+  public getToRead()
   {
-    for (let i: number = 0; i < this.links.length; i++) {
-      if (this.links[i]._id == id) {
-        this.links.splice(i, 1);
+    let arr: Link[] = [];
 
-        return;
+    for (let link of this.links)
+    {
+      if (link.status === 0) {
+        arr.push(link);
       }
     }
+
+    return arr;
+  }
+
+  public getRead()
+  {
+    let arr: Link[] = [];
+
+    for (let link of this.links)
+    {
+      if (link.status === 1) {
+        arr.push(link);
+      }
+    }
+
+    return arr;
   }
 
   private onAddLink(link: Link)
   {
-    this.links.push(link);
+    this.getLinks();
   }
 }

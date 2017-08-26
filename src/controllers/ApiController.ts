@@ -7,7 +7,7 @@ export class ApiController
 
     public getLinks(req: Request, res: Response): void
     {
-        Link.find({}, (err: any, results: LinkModel[]) => {
+        Link.find({}, null, {sort: {favourite: -1}}, (err: any, results: LinkModel[]) => {
             res.json(new ApiResponse(err, results).getResponse());
         });
     }
