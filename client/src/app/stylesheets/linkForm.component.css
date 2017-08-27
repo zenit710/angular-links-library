@@ -2,11 +2,11 @@
   margin: 20px 0;
 }
 
-.errors {
+.error-container {
   position: relative;
 }
 
-.errors span {
+.error-container span {
   position: absolute;
   top: 5px;
   right: 5px;

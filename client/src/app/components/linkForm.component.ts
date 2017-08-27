@@ -2,22 +2,36 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { LinkService } from '../services/link.service';
 import { Link } from '../models/Link';
 import { ApiResponse, API_STATUS_CODE } from '../models/ApiResponse';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'link-form',
   templateUrl: '../templates/linkForm.component.html',
   styleUrls: ['../stylesheets/linkForm.component.css'],
-  providers: [LinkService]
+  providers: [LinkService],
+  animations: [
+    trigger('hasErrors', [
+      state('errors', style({
+        opacity: 1,
+        height: '*'
+      })),
+      state('no-errors', style({
+        opacity: 0,
+        height: '0px'
+      })),
+      transition('errors => no-errors', animate('500ms ease-in')),
+      transition('no-errors => errors', animate('500ms ease-out'))
+    ])
+  ]
 })
 export class LinkComponent {
   @Output() onAdded: EventEmitter<Link> = new EventEmitter<Link>();
 
   link: Link;
-  errors: Array<any>;
+  errors: Array<any> = [];
 
   constructor(private linkService: LinkService) {
     this.initLinkModel();
-    this.errors = [];
   }
 
   public addLink() {

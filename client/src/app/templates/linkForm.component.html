@@ -1,4 +1,4 @@
-<div *ngIf="errors.length" class="alert alert-danger errors">
+<div class="alert alert-danger error-container" [@hasErrors]="errors.length ? 'errors' : 'no-errors'">
   <span class="glyphicon glyphicon-remove" (click)="clearErrors()"></span>
   <p *ngFor="let err of errors">{{ err.message }}</p>
 </div>
