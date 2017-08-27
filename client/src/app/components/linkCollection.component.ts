@@ -2,18 +2,41 @@ import { Component } from '@angular/core';
 import { LinkService } from '../services/link.service';
 import { Link } from '../models/Link';
 import { ApiResponse, API_STATUS_CODE } from '../models/ApiResponse';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'link-collection',
   templateUrl: '../templates/linkCollection.component.html',
   styleUrls: ['../stylesheets/linkCollection.component.css'],
-  providers: [LinkService]
+  providers: [LinkService],
+  animations: [
+    trigger('removeRequested', [
+      state('requested', style({
+        opacity: 1,
+        position: 'fixed',
+        top: '45%',
+        left: '45%',
+        boxShadow: 'rgb(136, 136, 136) 0 0 150px, rgb(136, 136, 136) 0 0 150px'
+      })),
+      state('empty', style({
+        opacity: 0,
+        position: 'fixed',
+        top: '45%',
+        left: '45%',
+        boxShadow: 'rgb(136, 136, 136) 0 0 150px, rgb(136, 136, 136) 0 0 150px'
+      })),
+      transition('requested => empty', animate('200ms ease-in')),
+      transition('empty => requested', animate('200ms ease-in'))
+    ])
+  ]
 })
 export class LinkCollectionComponent {
   links: Array<Link>;
+  removeRequest: Link;
 
   constructor(private linkService: LinkService) {
     this.links = [];
+    this.initLinkModel();
     this.getLinks();
   }
 
@@ -39,6 +62,8 @@ export class LinkCollectionComponent {
           console.error(response.errors)
         }
       });
+
+    this.initLinkModel();
   }
 
   public switchFavourite(link: Link)
@@ -93,8 +118,23 @@ export class LinkCollectionComponent {
     return arr;
   }
 
+  public requestRemove(link: Link)
+  {
+    this.removeRequest = link;
+  }
+
   private onAddLink(link: Link)
   {
     this.getLinks();
+  }
+
+  private initLinkModel()
+  {
+    this.removeRequest = {
+      name: "",
+      url: "",
+      description: "",
+      favourite: false
+    };
   }
 }

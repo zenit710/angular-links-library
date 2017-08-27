@@ -19,8 +19,8 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
         opacity: 0,
         height: '0px'
       })),
-      transition('errors => no-errors', animate('500ms ease-in')),
-      transition('no-errors => errors', animate('500ms ease-out'))
+      transition('errors => no-errors', animate('200ms ease-in')),
+      transition('no-errors => errors', animate('200ms ease-out'))
     ])
   ]
 })
