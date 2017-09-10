@@ -17,9 +17,9 @@
       <td class="col-md-3">{{ link.description }}</td>
       <td class="col-md-3">{{ link.createdAt | date:'yyyy-MM-dd HH:mm:ss' || "" }}</td>
       <td class="col-md-3">
-        <button class="btn btn-danger glyphicon glyphicon-remove" (click)="requestRemove(link)"></button>
-        <button class="btn btn-info glyphicon glyphicon-star{{ link.favourite ? '-empty' : ''}}" (click)="switchFavourite(link)"></button>
-        <button class="btn btn-warning glyphicon glyphicon-{{ link.status === 0 ? 'ok' : 'dashboard' }}" (click)="switchStatus(link)"></button>
+        <button class="btn btn-danger glyphicon glyphicon-remove" (click)="requestRemove(link)" title="Usuń"></button>
+        <button class="btn btn-info glyphicon glyphicon-star{{ link.favourite ? '-empty' : ''}}" (click)="switchFavourite(link)" title="Ulubiony?"></button>
+        <button class="btn btn-warning glyphicon glyphicon-{{ link.status === 0 ? 'ok' : 'dashboard' }}" (click)="switchStatus(link)" title="Przeczytany"></button>
       </td>
     </tr>
     </tbody>
@@ -41,9 +41,9 @@
       <td class="col-md-3">{{ link.description }}</td>
       <td class="col-md-3">{{ link.createdAt | date:'yyyy-MM-dd HH:mm:ss' || "" }}</td>
       <td class="col-md-3">
-        <button class="btn btn-danger glyphicon glyphicon-remove" (click)="requestRemove(link)"></button>
-        <button class="btn btn-info glyphicon glyphicon-star{{ link.favourite ? '-empty' : ''}}" (click)="switchFavourite(link)"></button>
-        <button class="btn btn-warning glyphicon glyphicon-{{ link.status === 0 ? 'ok' : 'dashboard' }}" (click)="switchStatus(link)"></button>
+        <button class="btn btn-danger glyphicon glyphicon-remove" (click)="requestRemove(link)" title="Usuń"></button>
+        <button class="btn btn-info glyphicon glyphicon-star{{ link.favourite ? '-empty' : ''}}" (click)="switchFavourite(link)" title="Ulubiony?"></button>
+        <button class="btn btn-warning glyphicon glyphicon-{{ link.status === 0 ? 'ok' : 'dashboard' }}" (click)="switchStatus(link)" title="Do przeczytania"></button>
       </td>
     </tr>
     </tbody>
